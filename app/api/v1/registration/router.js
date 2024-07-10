@@ -13,12 +13,17 @@ router.post(
   create
 );
 
-router.get('/registration', authenticateUser, authorizeRoles('admin'), index);
+router.get(
+  '/registration',
+  authenticateUser,
+  authorizeRoles('admin', 'peserta'),
+  index
+);
 
 router.get(
   '/registration/:id',
   authenticateUser,
-  authorizeRoles('admin'),
+  authorizeRoles('admin', 'peserta'),
   find
 );
 

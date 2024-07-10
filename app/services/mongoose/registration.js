@@ -25,7 +25,7 @@ const createRegistration = async (req, res) => {
   return result;
 };
 
-const getAllRegistration = async (req) => {
+const getAllRegistration = async (req, res) => {
   const { keyword, userID, documentID, eventID } = req.query;
   let condition = {};
 
@@ -48,11 +48,11 @@ const getAllRegistration = async (req) => {
   const result = await Registration.find(condition)
     .populate({
       path: 'userID',
-      select: '_id name email avatar role',
+      select: '_id name email no_telp avatar role',
     })
     .populate({
       path: 'documentID',
-      select: '_id fileName',
+      select: '_id fileName data_valid',
     })
     .populate({
       path: 'eventID',
@@ -63,23 +63,27 @@ const getAllRegistration = async (req) => {
   return result;
 };
 
-const getOneRegistration = async (req) => {
+const getOneRegistration = async (req, res) => {
   const { id } = req.params;
 
   const result = await Registration.findOne({ _id: id })
     .populate({
       path: 'userID',
-      select: '_id name email avatar role',
+      select: '_id name email no_telp avatar role',
     })
     .populate({
       path: 'documentID',
-      select: '_id fileName',
+      select: '_id fileName data_valid',
     })
     .populate({
       path: 'eventID',
       select:
         '_id name description event_status location price linkMeeting imageID',
     });
+
+  const filePath = path.resolve(`./${registration.documentID.fileName}`);
+  res.setHeader('Content-Type', 'application/pdf');
+  res.sendFile(filePath);
 
   if (!result)
     throw new NotFoundError(`Tidak ada pendaftaran dengan id :  ${id}`);
