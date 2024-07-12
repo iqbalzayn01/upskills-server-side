@@ -19,7 +19,7 @@ let eventSchema = new mongoose.Schema(
     },
     event_status: {
       type: String,
-      enum: ['offline', 'online'],
+      enum: ['buka', 'tutup', 'selesai'],
       default: '',
     },
     location: {
@@ -41,6 +41,11 @@ let eventSchema = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: 'Image',
       required: true,
+    },
+    kuota: {
+      type: Number,
+      required: [true, 'Kuota harus diisi'],
+      default: 0,
     },
   },
   { timestamps: true }

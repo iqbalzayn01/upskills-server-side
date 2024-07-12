@@ -8,8 +8,6 @@ const {
 } = require('../../../services/mongoose/users');
 const { StatusCodes } = require('http-status-codes');
 
-let userStatus = {};
-
 const create = async (req, res, next) => {
   try {
     const result = await createUsers(req);

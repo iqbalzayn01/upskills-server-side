@@ -18,6 +18,10 @@ let scheduleSchema = new mongoose.Schema(
         },
       },
     ],
+    batas_daftar: {
+      type: Date,
+      required: [true, 'Batas Pendaftaran selesai harus diisi'],
+    },
     talentID: {
       type: mongoose.Types.ObjectId,
       ref: 'Talent',

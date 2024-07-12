@@ -12,6 +12,7 @@ const createEvents = async (req, res) => {
     price,
     linkMeeting,
     imageID,
+    kuota,
   } = req.body;
 
   await checkingImage(imageID);
@@ -30,6 +31,7 @@ const createEvents = async (req, res) => {
     price,
     linkMeeting,
     imageID,
+    kuota,
   });
 
   return result;
@@ -70,8 +72,15 @@ const getOneEvents = async (req) => {
 
 const updateEvents = async (req) => {
   const { id } = req.params;
-  const { name, description, event_status, location, price, linkMeeting } =
-    req.body;
+  const {
+    name,
+    description,
+    event_status,
+    location,
+    price,
+    linkMeeting,
+    kuota,
+  } = req.body;
 
   const check = await Events.findOne({
     name,
@@ -80,6 +89,7 @@ const updateEvents = async (req) => {
     location,
     price,
     linkMeeting,
+    kuota,
     _id: { $ne: id },
   });
 
@@ -94,6 +104,7 @@ const updateEvents = async (req) => {
       location,
       price,
       linkMeeting,
+      kuota,
     },
     { new: true, runValidators: true }
   );

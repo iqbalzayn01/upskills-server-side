@@ -57,7 +57,7 @@ const getAllRegistration = async (req, res) => {
     .populate({
       path: 'eventID',
       select:
-        '_id name description event_status location price linkMeeting imageID',
+        '_id name description event_status location price linkMeeting imageID kuota',
     });
 
   return result;
@@ -78,12 +78,8 @@ const getOneRegistration = async (req, res) => {
     .populate({
       path: 'eventID',
       select:
-        '_id name description event_status location price linkMeeting imageID',
+        '_id name description event_status location price linkMeeting imageID kuota',
     });
-
-  const filePath = path.resolve(`./${registration.documentID.fileName}`);
-  res.setHeader('Content-Type', 'application/pdf');
-  res.sendFile(filePath);
 
   if (!result)
     throw new NotFoundError(`Tidak ada pendaftaran dengan id :  ${id}`);

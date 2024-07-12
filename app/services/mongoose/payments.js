@@ -35,6 +35,21 @@ const getAllPayments = async (req) => {
   const result = await Payments.find(condition).populate({
     path: 'registrationID',
     select: '_id userID documentID eventID createAt',
+    populate: [
+      {
+        path: 'userID',
+        select: '_id name email no_telp avatar role',
+      },
+      {
+        path: 'documentID',
+        select: '_id fileName data_valid',
+      },
+      {
+        path: 'eventID',
+        select:
+          '_id name description event_status location price linkMeeting imageID kuota',
+      },
+    ],
   });
 
   return result;
@@ -46,6 +61,21 @@ const getOnePayments = async (req) => {
   const result = await Payments.findOne({ _id: id }).populate({
     path: 'registrationID',
     select: '_id userID documentID eventID createAt',
+    populate: [
+      {
+        path: 'userID',
+        select: '_id name email no_telp avatar role',
+      },
+      {
+        path: 'documentID',
+        select: '_id fileName data_valid',
+      },
+      {
+        path: 'eventID',
+        select:
+          '_id name description event_status location price linkMeeting imageID kuota',
+      },
+    ],
   });
 
   if (!result)

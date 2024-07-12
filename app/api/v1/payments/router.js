@@ -14,6 +14,11 @@ router.post(
 );
 
 router.get('/payments', authenticateUser, authorizeRoles('admin'), index);
-router.get('/payments/:id', authenticateUser, authorizeRoles('admin'), find);
+router.get(
+  '/payments/:id',
+  authenticateUser,
+  authorizeRoles('admin', 'peserta'),
+  find
+);
 
 module.exports = router;
