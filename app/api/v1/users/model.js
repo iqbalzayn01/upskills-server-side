@@ -56,10 +56,10 @@ userSchema.pre('save', async function (next) {
     const year = new Date().getFullYear().toString().slice(-2);
     const prefix = User.role === 'admin' ? 'AD' : 'PS';
 
-    const count = await mongoose.model('User').countDocuments();
-    const sequentialNumber = (count + 1).toString().padStart(3, '0');
+    // Generate a random three-digit number
+    const randomPart = Math.floor(100 + Math.random() * 900).toString();
 
-    User.id_user = `${prefix}${year}${sequentialNumber}`;
+    User.id_user = `${prefix}${year}${randomPart}`;
   }
 
   if (User.isModified('password')) {

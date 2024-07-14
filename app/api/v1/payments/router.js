@@ -13,7 +13,12 @@ router.post(
   create
 );
 
-router.get('/payments', authenticateUser, authorizeRoles('admin'), index);
+router.get(
+  '/payments',
+  authenticateUser,
+  authorizeRoles('admin', 'peserta'),
+  index
+);
 router.get(
   '/payments/:id',
   authenticateUser,
