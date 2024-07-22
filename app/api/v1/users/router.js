@@ -22,14 +22,14 @@ router.get('/users', authenticateUser, authorizeRoles('admin'), index);
 router.get(
   '/users/:id',
   authenticateUser,
-  authorizeRoles('user', 'admin'),
+  authorizeRoles('peserta', 'admin'),
   find
 );
 
 router.put(
   '/users/:id',
   authenticateUser,
-  authorizeRoles('user', 'admin'),
+  authorizeRoles('peserta', 'admin'),
   update
 );
 

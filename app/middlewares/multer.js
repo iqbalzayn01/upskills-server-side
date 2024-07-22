@@ -31,7 +31,7 @@ const documentStorage = multer.diskStorage({
 });
 
 const documentFileFilter = (req, file, cb) => {
-  const allowedTypes = /pdf|doc|docx/;
+  const allowedTypes = /pdf/;
   const extname = allowedTypes.test(
     path.extname(file.originalname).toLowerCase()
   );
@@ -42,8 +42,7 @@ const documentFileFilter = (req, file, cb) => {
   } else {
     cb(
       {
-        message:
-          'Unsupported file format for documents. Allowed formats: PDF, DOC, DOCX',
+        msg: 'Format file tidak didukung untuk dokumen. Format yang diizinkan hanya: PDF',
       },
       false
     );
@@ -72,8 +71,7 @@ const imageFileFilter = (req, file, cb) => {
   } else {
     cb(
       {
-        message:
-          'Unsupported file format for images. Allowed formats: JPEG, JPG, PNG',
+        msg: 'Format file tidak didukung untuk gambar. Format yang diizinkan: JPEG, JPG, PNG',
       },
       false
     );
@@ -84,7 +82,7 @@ const imageFileFilter = (req, file, cb) => {
 const documentUploadMiddleware = multer({
   storage: documentStorage,
   limits: {
-    fileSize: 5000000, // 5 mb
+    fileSize: 20000000, // 20 mb
   },
   fileFilter: documentFileFilter,
 });

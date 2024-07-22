@@ -57,7 +57,7 @@ const getAllRegistration = async (req, res) => {
     .populate({
       path: 'eventID',
       select:
-        '_id name description event_status location price linkMeeting imageID kuota',
+        '_id id_event name description event_status location price linkMeeting imageID kuota',
     });
 
   return result;
@@ -78,7 +78,7 @@ const getOneRegistration = async (req, res) => {
     .populate({
       path: 'eventID',
       select:
-        '_id name description event_status location price linkMeeting imageID kuota',
+        '_id id_event name description event_status location price linkMeeting imageID kuota',
     });
 
   if (!result)
