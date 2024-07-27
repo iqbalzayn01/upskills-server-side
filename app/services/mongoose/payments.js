@@ -64,7 +64,7 @@ const getOnePayments = async (req) => {
     populate: [
       {
         path: 'userID',
-        select: '_id name email no_telp avatar role',
+        select: '_id id_user name email no_telp avatar role',
       },
       {
         path: 'documentID',
@@ -73,7 +73,7 @@ const getOnePayments = async (req) => {
       {
         path: 'eventID',
         select:
-          '_id name description event_status location price linkMeeting imageID kuota',
+          '_id id_event name description event_status location price linkMeeting imageID kuota',
       },
     ],
   });
