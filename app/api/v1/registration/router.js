@@ -37,7 +37,7 @@ router.put(
 router.delete(
   '/registration/:id',
   authenticateUser,
-  authorizeRoles('admin'),
+  authorizeRoles('admin', 'peserta'),
   destroy
 );
 
