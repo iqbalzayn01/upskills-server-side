@@ -50,10 +50,12 @@ talentSchema.pre('save', async function (next) {
     const prefix = 'NR';
 
     try {
-      const count = await mongoose.model('Talent').countDocuments();
-      const sequentialNumber = (count + 1).toString().padStart(3, '0');
+      // const count = await mongoose.model('Talent').countDocuments();
+      // const sequentialNumber = (count + 1).toString().padStart(3, '0');
+      // Generate a random three-digit number
+      const randomPart = Math.floor(100 + Math.random() * 900).toString();
 
-      Talent.id_talent = `${prefix}${year}${sequentialNumber}`;
+      Talent.id_talent = `${prefix}${year}${randomPart}`;
     } catch (error) {
       return next(error);
     }

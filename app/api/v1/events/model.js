@@ -55,19 +55,20 @@ eventSchema.pre('save', async function (next) {
   if (this.isNew) {
     try {
       const yearSuffix = new Date().getFullYear().toString().slice(-2);
-      const lastEvent = await this.constructor
-        .findOne()
-        .sort({ createdAt: -1 })
-        .exec();
-      let sequenceNumber = '001';
+      // const lastEvent = await this.constructor
+      //   .findOne()
+      //   .sort({ createdAt: -1 })
+      //   .exec();
+      // let sequenceNumber = '001';
 
-      if (lastEvent) {
-        const lastIdEvent = lastEvent.id_event;
-        const lastSequence = parseInt(lastIdEvent.slice(-3), 10);
-        sequenceNumber = (lastSequence + 1).toString().padStart(3, '0');
-      }
+      // if (lastEvent) {
+      //   const lastIdEvent = lastEvent.id_event;
+      //   const lastSequence = parseInt(lastIdEvent.slice(-3), 10);
+      //   sequenceNumber = (lastSequence + 1).toString().padStart(3, '0');
+      // }
+      const randomPart = Math.floor(100 + Math.random() * 900).toString();
 
-      this.id_event = `KN${yearSuffix}${sequenceNumber}`;
+      this.id_event = `KN${yearSuffix}${randomPart}`;
     } catch (error) {
       return next(error);
     }
